@@ -1,0 +1,4 @@
+catalog
+=======
+
+A Symfony project.
