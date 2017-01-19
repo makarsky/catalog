@@ -1,15 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Welcome to my course project</h1>
+    <h1>Welcome to Catalog</h1>
     <div>
-        <a href="#">
-            Login
-        </a>
+        <a href="{{ path('login') }}">Log in</a>
     </div>
     <div>
-        <a href="#">
-            Register
-        </a>
+        <a href="{{ path('register') }}">Register</a>
     </div>
 {% endblock %}

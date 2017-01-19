@@ -8,17 +8,16 @@
 
 namespace AppBundle\Controller;
 
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UserController extends Controller
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/main", name="main")
      */
     public function indexAction()
     {
-        return $this->render('auth/index.html.twig');
+        return $this->render('main/main.html.twig');
     }
 }
