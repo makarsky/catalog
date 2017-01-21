@@ -8,8 +8,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ResetPassword;
 use AppBundle\Entity\User;
-use AppBundle\Form\UserType;
+use AppBundle\Form\User\RecoveryPasswordType;
+use AppBundle\Form\User\ResetPasswordType;
+use AppBundle\Form\User\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,5 +82,80 @@ class SecurityController extends Controller
         return $this->render('auth/register.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/reset_password", name="reset_password")
+     */
+    public function resetPasswordAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRep = $em->getRepository('AppBundle:User');
+        $form = $this->createForm(ResetPasswordType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $email = $form->get('email')->getData();
+            $user = $userRep->findOneByEmail($email);
+            if (!is_null($user)) {
+                $resetPassword = new ResetPassword();
+                $resetPassword->setEmail($email);
+                $hash = md5(uniqid(null, true));
+                $resetPassword->setHashKey($hash);
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Password recovery')
+                    ->setFrom('catalog@gmail.com')
+                    ->setTo($email)
+                    ->setBody('To reset you password please 
+                    follow this link http://localhost:8000/password_recovery/' . $hash);
+                $this->get('mailer')->send($message);
+                $em->persist($resetPassword);
+                $em->flush();
+                $this->addFlash('notice', 'Instructions were sent to you email!');
+            } else {
+                $this->addFlash('notice', 'User with that email not found!');
+                return $this->redirectToRoute('reset_password');
+            }
+        }
+        return $this->render('auth/reset_password.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/password_recovery/{hash}", name="password_recovery")
+     */
+    public function passwordRecoveryAction(Request $request, $hash)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRep = $em->getRepository('AppBundle:User');
+        $resetRep = $em->getRepository('AppBundle:ResetPassword');
+
+        $forgetter = $resetRep->findOneByHashKey($hash);
+
+        if (!is_null($forgetter)) {
+            $form = $this->createForm(RecoveryPasswordType::class);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user = $userRep->findOneByEmail($forgetter->getEmail());
+                $encoder = $this->get('security.password_encoder');
+                $user->setPassword($encoder->encodePassword(
+                    $user,
+                    $form->get('new_password')->getData()
+                ));
+                $em->remove($forgetter);
+                $em->persist($user);
+                $em->flush();
+                $this->addFlash('notice', 'Your password has been reset successfully!');
+                return $this->redirectToRoute('login');
+            }
+            return $this->render('auth/reset_password.html.twig', [
+                'form' => $form->createView()
+            ]);
+        } else {
+            return $this->redirectToRoute('index');
+        }
     }
 }
