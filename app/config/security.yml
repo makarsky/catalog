@@ -36,7 +36,7 @@ security:
                 login_path: /login
                 check_path: /login
                 csrf_token_generator: security.csrf.token_manager
-                default_target_path: main
+                default_target_path: category
 
             logout:
                 path: /logout
@@ -45,4 +45,5 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/main, roles: ROLE_USER}
+        - { path: ^/category, roles: ROLE_USER}
+        - { path: ^/user, roles: ROLE_ADMIN}
