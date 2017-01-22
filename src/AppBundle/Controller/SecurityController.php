@@ -12,7 +12,7 @@ use AppBundle\Entity\ResetPassword;
 use AppBundle\Entity\User;
 use AppBundle\Form\User\RecoveryPasswordType;
 use AppBundle\Form\User\ResetPasswordType;
-use AppBundle\Form\User\UserType;
+use AppBundle\Form\User\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,7 +59,7 @@ class SecurityController extends Controller
     public function registerAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(RegisterType::class, $user);
         $form->add('save', SubmitType::class, [
             'label' => 'Submit',
         ]);
