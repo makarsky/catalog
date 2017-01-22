@@ -24,9 +24,9 @@ class Item
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $title;
+    private $name;
 
     /**
      * @var string
@@ -38,21 +38,21 @@ class Item
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="isActive", type="boolean")
+     * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 
@@ -66,23 +66,37 @@ class Item
     /**
      * @var int
      *
-     * @ORM\Column(name="categoryId", type="integer")
+     * @ORM\Column(name="category_id", type="integer")
      */
     private $categoryId;
 
     /**
-     * @var binary
+     * @var string
      *
-     * @ORM\Column(name="image", type="binary", nullable=true)
+     * @ORM\Column(name="image", type="blob", nullable=true)
      */
     private $image;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="linkedItems", type="integer", nullable=true)
+     * @ORM\Column(name="item_id_1", type="integer", nullable=true)
      */
-    private $linkedItems;
+    private $itemId1;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="item_id_2", type="integer", nullable=true)
+     */
+    private $itemId2;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="item_id_3", type="integer", nullable=true)
+     */
+    private $itemId3;
 
 
     /**
@@ -96,27 +110,27 @@ class Item
     }
 
     /**
-     * Set title
+     * Set name
      *
-     * @param string $title
+     * @param string $name
      *
      * @return Item
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get name
      *
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
@@ -266,7 +280,7 @@ class Item
     /**
      * Set image
      *
-     * @param binary $image
+     * @param string $image
      *
      * @return Item
      */
@@ -280,7 +294,7 @@ class Item
     /**
      * Get image
      *
-     * @return binary
+     * @return string
      */
     public function getImage()
     {
@@ -288,27 +302,75 @@ class Item
     }
 
     /**
-     * Set linkedItems
+     * Set itemId1
      *
-     * @param integer $linkedItems
+     * @param integer $itemId1
      *
      * @return Item
      */
-    public function setLinkedItems($linkedItems)
+    public function setItemId1($itemId1)
     {
-        $this->linkedItems = $linkedItems;
+        $this->itemId1 = $itemId1;
 
         return $this;
     }
 
     /**
-     * Get linkedItems
+     * Get itemId1
      *
      * @return int
      */
-    public function getLinkedItems()
+    public function getItemId1()
     {
-        return $this->linkedItems;
+        return $this->itemId1;
+    }
+
+    /**
+     * Set itemId2
+     *
+     * @param integer $itemId2
+     *
+     * @return Item
+     */
+    public function setItemId2($itemId2)
+    {
+        $this->itemId2 = $itemId2;
+
+        return $this;
+    }
+
+    /**
+     * Get itemId2
+     *
+     * @return int
+     */
+    public function getItemId2()
+    {
+        return $this->itemId2;
+    }
+
+    /**
+     * Set itemId3
+     *
+     * @param integer $itemId3
+     *
+     * @return Item
+     */
+    public function setItemId3($itemId3)
+    {
+        $this->itemId3 = $itemId3;
+
+        return $this;
+    }
+
+    /**
+     * Get itemId3
+     *
+     * @return int
+     */
+    public function getItemId3()
+    {
+        return $this->itemId3;
     }
 }
 
