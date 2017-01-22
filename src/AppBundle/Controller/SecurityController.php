@@ -77,6 +77,16 @@ class SecurityController extends Controller
             $user->setRole('ROLE_USER');
             $em->persist($user);
             $em->flush();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Please verify your email address')
+                ->setFrom('catalog@gmail.com')
+                ->setTo($form->get('email')->getData())
+                ->setBody('Hi ' . $user->getUsername() .',
+                Please verify your email address so we know that it\'s really you!
+                http://localhost:8000/confirm_email/');
+            $this->get('mailer')->send($message);
+
             return $this->redirectToRoute('login');
         }
         return $this->render('auth/register.html.twig', [
@@ -85,7 +95,9 @@ class SecurityController extends Controller
     }
 
     /**
+     * @param Request $request
      * @Route("/reset_password", name="reset_password")
+     * @return Response
      */
     public function resetPasswordAction(Request $request)
     {
@@ -108,8 +120,8 @@ class SecurityController extends Controller
                     ->setSubject('Password recovery')
                     ->setFrom('catalog@gmail.com')
                     ->setTo($email)
-                    ->setBody('To reset you password please 
-                    follow this link http://localhost:8000/password_recovery/' . $hash);
+                    ->setBody('To reset you password please follow this link:
+                    http://localhost:8000/password_recovery/' . $hash);
                 $this->get('mailer')->send($message);
                 $em->persist($resetPassword);
                 $em->flush();
@@ -125,7 +137,9 @@ class SecurityController extends Controller
     }
 
     /**
+     * @param Request $request
      * @Route("/password_recovery/{hash}", name="password_recovery")
+     * @return Response
      */
     public function passwordRecoveryAction(Request $request, $hash)
     {
