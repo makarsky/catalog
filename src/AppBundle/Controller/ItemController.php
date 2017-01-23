@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Item;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Item controller.
@@ -44,6 +45,9 @@ class ItemController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $now = new \DateTime('now');
+            $item->setCreatedAt($now);
+            $item->setUpdatedAt($now);
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
             $em->flush($item);
@@ -86,6 +90,8 @@ class ItemController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $now = new \DateTime('now');
+            $item->setUpdatedAt($now);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('item_edit', array('id' => $item->getId()));

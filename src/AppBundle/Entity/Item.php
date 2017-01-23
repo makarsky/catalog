@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Item
@@ -65,7 +66,8 @@ class Item
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $category;
 
@@ -96,7 +98,6 @@ class Item
      * @ORM\Column(name="item_id_3", type="integer", nullable=true)
      */
     private $itemId3;
-
 
     /**
      * Get id
