@@ -47,6 +47,11 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $encoder = $this->get('security.password_encoder');
+            $user->setPassword($encoder->encodePassword(
+                $user,
+                $form->get('password')->getData()
+            ));
             $em->persist($user);
             $em->flush($user);
 
@@ -83,11 +88,21 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
+        $oldPassword = $user->getPassword();
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm(UserType::class, $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $encoder = $this->get('security.password_encoder');
+
+            if ($oldPassword != $editForm->get('password')->getData()) {
+                $user->setPassword($encoder->encodePassword(
+                    $user,
+                    $editForm->get('password')->getData()
+                ));
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));

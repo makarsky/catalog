@@ -78,6 +78,7 @@ class SecurityController extends Controller
             $em->persist($user);
             $em->flush();
 
+            // TODO Implement account activation
             $message = \Swift_Message::newInstance()
                 ->setSubject('Please verify your email address')
                 ->setFrom('catalog@gmail.com')
