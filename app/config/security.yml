@@ -36,14 +36,22 @@ security:
                 login_path: /login
                 check_path: /login
                 csrf_token_generator: security.csrf.token_manager
-                default_target_path: category
+                default_target_path: category_index
 
             logout:
                 path: /logout
                 target: /
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/category, roles: ROLE_USER}
+        - { path: ^/item, roles: ROLE_USER}
+        - { path: ^/edit, roles: ROLE_MODERATOR}
+        - { path: ^/new, roles: ROLE_MODERATOR}
+        - { path: ^/delete, roles: ROLE_MODERATOR}
+        - { path: ^/user_edit, roles: ROLE_ADMIN}
+        - { path: ^/user_delete, roles: ROLE_ADMIN}
+        - { path: ^/user_new, roles: ROLE_ADMIN}
+        - { path: ^/user_show, roles: ROLE_ADMIN}
         - { path: ^/user, roles: ROLE_ADMIN}
