@@ -50,8 +50,8 @@ security:
         - { path: ^/edit, roles: ROLE_MODERATOR}
         - { path: ^/new, roles: ROLE_MODERATOR}
         - { path: ^/delete, roles: ROLE_MODERATOR}
-        - { path: ^/user_edit, roles: ROLE_ADMIN}
-        - { path: ^/user_delete, roles: ROLE_ADMIN}
-        - { path: ^/user_new, roles: ROLE_ADMIN}
-        - { path: ^/user_show, roles: ROLE_ADMIN}
+#        - { path: ^/user_edit, roles: ROLE_ADMIN}
+#        - { path: ^/user_delete, roles: ROLE_ADMIN}
+#        - { path: ^/user_new, roles: ROLE_ADMIN}
+#        - { path: ^/user_show, roles: ROLE_ADMIN}
         - { path: ^/user, roles: ROLE_ADMIN}
