@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Items list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Isactive</th>
+                <th>Sku</th>
+                <th>Image</th>
+                <th>Itemid1</th>
+                <th>Itemid2</th>
+                <th>Itemid3</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td><a href="{{ path('item_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{% if item.createdAt %}{{ item.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if item.updatedAt %}{{ item.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if item.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>{{ item.sku }}</td>
+                <td>{{ item.image }}</td>
+                <td>{{ item.itemId1 }}</td>
+                <td>{{ item.itemId2 }}</td>
+                <td>{{ item.itemId3 }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('item_show', { 'id': item.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('item_edit', { 'id': item.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('item_new') }}">Create a new item</a>
+        </li>
+    </ul>
+{% endblock %}
