@@ -1,11 +1,23 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Welcome to Catalog</h1>
-    <div>
-        <a href="{{ path('login') }}">Log in</a>
-    </div>
-    <div>
-        <a href="{{ path('register') }}">Register</a>
+    <div class="container">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="margin-top: 170px;">
+            <h1 style="text-align: center;">Welcome to Catalog</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{{ path('login') }}" class="btn btn-success btn-lg btn-block" style="margin-bottom: 10px">
+                        Log in
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{{ path('register') }}" class="btn btn-default btn-lg btn-block"> Register </a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
