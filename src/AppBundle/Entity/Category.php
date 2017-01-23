@@ -43,7 +43,6 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
-     * @ORM\OrderBy({"order" = "ASC"})
      */
     public $children;
 
@@ -170,5 +169,10 @@ class Category
     public function getParent()
     {
         return $this->parent;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }
