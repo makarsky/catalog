@@ -36,6 +36,8 @@ class Category
     private $isActive;
 
     /**
+     * @var int
+     *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
@@ -146,29 +148,5 @@ class Category
     public function getChildren()
     {
         return $this->children;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param \AppBundle\Entity\Category $parent
-     *
-     * @return Category
-     */
-    public function setParent(\AppBundle\Entity\Category $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return \AppBundle\Entity\Category
-     */
-    public function getParent()
-    {
-        return $this->parent;
     }
 }
