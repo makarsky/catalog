@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Item
@@ -65,7 +66,8 @@ class Item
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $category;
 
@@ -87,6 +89,7 @@ class Item
      * @var int
      *
      * @ORM\Column(name="item_id_2", type="integer", nullable=true)
+     * @Assert\Blank()
      */
     private $itemId2;
 
@@ -96,7 +99,6 @@ class Item
      * @ORM\Column(name="item_id_3", type="integer", nullable=true)
      */
     private $itemId3;
-
 
     /**
      * Get id
@@ -340,5 +342,29 @@ class Item
     public function getItemId3()
     {
         return $this->itemId3;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Item
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

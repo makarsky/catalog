@@ -3,6 +3,12 @@
 {% block body %}
     <h1>Items list</h1>
 
+    <ul>
+        <li>
+            <a href="{{ path('item_new') }}">Create a new item</a>
+        </li>
+    </ul>
+
     <table>
         <thead>
             <tr>
@@ -48,10 +54,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('item_new') }}">Create a new item</a>
-        </li>
-    </ul>
 {% endblock %}
