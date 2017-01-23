@@ -1,19 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Categories list</h1>
+<div class="container">
+    <h1 class="page-header">Categories list</h1>
 
-    <table>
+    <ul>
+        <li>
+            <a href="{{ path('category_new') }}">Create a new category</a>
+        </li>
+    </ul>
+
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Isactive</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                <th{% if pagination.isSorted('a.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'isActive', 'a.isActive') }}</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for category in categories %}
+        {% for category in pagination %}
             <tr>
                 <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
                 <td>{{ category.title }}</td>
@@ -32,10 +39,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('category_new') }}">Create a new category</a>
-        </li>
-    </ul>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
 {% endblock %}
