@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 //        $users = $em->getRepository('AppBundle:User')->findAll();
-        $dql   = "SELECT u FROM AppBundle:User u";
+        $dql = "SELECT a FROM AppBundle:User a";
         $query = $em->createQuery($dql);
 
         /**
@@ -40,7 +40,7 @@ class UserController extends Controller
         );
 
         return $this->render('user/index.html.twig', array(
-            'users' => $pagination,
+            'pagination' => $pagination,
         ));
     }
 
