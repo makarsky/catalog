@@ -373,3 +373,4 @@ class Item
         return $this->itemId3;
     }
 }
+
