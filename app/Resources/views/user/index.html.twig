@@ -28,7 +28,7 @@
         <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
-                <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Username', 'a.username') }}</th>
+                <th{% if pagination.isSorted('a.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Username', 'a.username') }}</th>
                 <th>Password</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Role', 'a.role') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Email', 'a.email') }}</th>

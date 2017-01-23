@@ -21,14 +21,27 @@ class ItemController extends Controller
      * @Route("/", name="item_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $items = $em->getRepository('AppBundle:Item')->findAll();
+//        $items = $em->getRepository('AppBundle:Item')->findAll();
+
+        $dql = "SELECT a FROM AppBundle:Item a";
+        $query = $em->createQuery($dql);
+
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 2)
+        );
 
         return $this->render('item/index.html.twig', array(
-            'items' => $items,
+            'pagination' => $pagination,
         ));
     }
 

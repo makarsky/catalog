@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Items list</h1>
+<div class="container">
+    <h1 class="page-header">Items list</h1>
 
     <ul>
         <li>
@@ -27,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for item in items %}
+        {% for item in pagination %}
             <tr>
                 <td><a href="{{ path('item_show', { 'id': item.id }) }}">{{ item.id }}</a></td>
                 <td>{{ item.name }}</td>
@@ -54,4 +55,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+</div>
 {% endblock %}
