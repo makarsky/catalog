@@ -1,0 +1,17 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Access Denied!{% endblock %}
+
+{% block body %}
+    <h1>Access Denied</h1>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('category_index') }}">return to the main page</a>.
+    </p>
+{% endblock %}
