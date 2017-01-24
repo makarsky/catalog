@@ -1,0 +1,17 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Page not found!{% endblock %}
+
+{% block body %}
+    <h1>Page not found</h1>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('category_index') }}">return to the main page</a>.
+    </p>
+{% endblock %}
