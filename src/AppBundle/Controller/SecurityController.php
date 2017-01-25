@@ -60,9 +60,6 @@ class SecurityController extends Controller
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
-        $form->add('save', SubmitType::class, [
-            'label' => 'Submit',
-        ]);
 
         $form->handleRequest($request);
 
