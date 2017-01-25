@@ -25,6 +25,7 @@
                 <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
                 <td>{{ category.title }}</td>
                 <td>{% if category.isActive %}Yes{% else %}No{% endif %}</td>
+                {% if is_granted('ROLE_MODERATOR') %}
                 <td>
                     <ul>
                         <li>
@@ -35,6 +36,7 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
