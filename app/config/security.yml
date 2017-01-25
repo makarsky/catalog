@@ -45,11 +45,11 @@ security:
     access_control:
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/category, roles: ROLE_USER}
-        - { path: ^/item, roles: ROLE_USER}
-        - { path: ^/edit, roles: ROLE_MODERATOR}
-        - { path: ^/new, roles: ROLE_MODERATOR}
-        - { path: ^/delete, roles: ROLE_MODERATOR}
+        - { path: ^/category$, roles: ROLE_USER}
+        - { path: ^/item$, roles: ROLE_USER}
+        - { path: /edit, roles: ROLE_MODERATOR}
+        - { path: /new, roles: ROLE_MODERATOR}
+        - { path: /delete, roles: ROLE_MODERATOR}
 #        - { path: ^/user_edit, roles: ROLE_ADMIN}
 #        - { path: ^/user_delete, roles: ROLE_ADMIN}
 #        - { path: ^/user_new, roles: ROLE_ADMIN}
