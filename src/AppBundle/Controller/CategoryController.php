@@ -60,7 +60,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush($category);
 
-            return $this->redirectToRoute('category_show', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_show', ['id' => $category->getId()]);
         }
 
         return $this->render('category/new.html.twig', array(
@@ -100,7 +100,7 @@ class CategoryController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('category_edit', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_edit', ['id' => $category->getId()]);
         }
 
         return $this->render('category/edit.html.twig', array(

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -53,7 +54,7 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->isActive = true;
+        $this->isActive = false;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
     }
@@ -216,5 +217,45 @@ class User implements UserInterface, \Serializable
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * @return Boolean true if the user's account is non expired, false otherwise
+     *
+     * @see AccountExpiredException
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @return Boolean
+     *
+     * @see LockedException
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * @return Boolean true if the user's credentials are non expired, false otherwise
+     *
+     * @see CredentialsExpiredException
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @return Boolean true if the user is enabled, false otherwise
+     *
+     * @see DisabledException
+     */
+    public function isEnabled()
+    {
+        return $this->getIsActive();
     }
 }
