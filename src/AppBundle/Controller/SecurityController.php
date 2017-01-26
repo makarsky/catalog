@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ConfirmEmail;
 use AppBundle\Entity\ResetPassword;
 use AppBundle\Entity\User;
 use AppBundle\Form\User\RecoveryPasswordType;
@@ -40,7 +41,7 @@ class SecurityController extends Controller
 
         return $this->render('auth/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 
@@ -70,21 +71,26 @@ class SecurityController extends Controller
                 $user,
                 $form->get('password')->getData()
             ));
-            $user->setIsActive(true);
+            $user->setIsActive(false);
             $user->setRole('ROLE_USER');
             $em->persist($user);
-            $em->flush();
 
-            // TODO Implement account activation
+            $hash = md5(uniqid(null, true));
+            $confirmEmail = new ConfirmEmail();
+            $confirmEmail->setEmail($form->get('email')->getData());
+            $confirmEmail->setHashKey($hash);
             $message = \Swift_Message::newInstance()
                 ->setSubject('Please verify your email address')
                 ->setFrom('catalog@gmail.com')
                 ->setTo($form->get('email')->getData())
-                ->setBody('Hi ' . $user->getUsername() .',
+                ->setBody('Hi ' . $user->getUsername() . ',
                 Please verify your email address so we know that it\'s really you!
-                http://localhost:8000/confirm_email/');
+                http://localhost:8000/confirm_email/' . $hash);
             $this->get('mailer')->send($message);
+            $em->persist($confirmEmail);
+            $em->flush();
 
+            $this->addFlash('notice', 'Activation instructions were sent to your email!');
             return $this->redirectToRoute('login');
         }
         return $this->render('auth/register.html.twig', [
@@ -124,6 +130,7 @@ class SecurityController extends Controller
                 $em->persist($resetPassword);
                 $em->flush();
                 $this->addFlash('notice', 'Instructions were sent to you email!');
+                return $this->redirectToRoute('login');
             } else {
                 $this->addFlash('notice', 'User with that email not found!');
                 return $this->redirectToRoute('reset_password');
@@ -166,6 +173,32 @@ class SecurityController extends Controller
             return $this->render('auth/reset_password.html.twig', [
                 'form' => $form->createView()
             ]);
+        } else {
+            return $this->redirectToRoute('index');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/confirm_email/{hash}", name="confirm_email")
+     * @return Response
+     */
+    public function confirmEmailAction(Request $request, $hash)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRep = $em->getRepository('AppBundle:User');
+        $confirmRep = $em->getRepository('AppBundle:ConfirmEmail');
+
+        $confirm = $confirmRep->findOneByHashKey($hash);
+
+        if (!is_null($confirm)) {
+            $user = $userRep->findOneByEmail($confirm->getEmail());
+            $user->setIsActive(true);
+            $em->remove($confirm);
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('notice', 'Your account has been activated successfully!');
+            return $this->redirectToRoute('login');
         } else {
             return $this->redirectToRoute('index');
         }
