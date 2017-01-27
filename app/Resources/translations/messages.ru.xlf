@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>register</source>
+                <target>Зарегистрироваться</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>login</source>
+                <target>Войти</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>welcome.text</source>
+                <target>Добро пожаловать в Каталог</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>welcome.title</source>
+                <target>Добро пожаловать!</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>username</source>
+                <target>Имя</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>password</source>
+                <target>Пароль</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>password.repeat</source>
+                <target>Повторите пароль</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>email</source>
+                <target>Почта</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>registration</source>
+                <target>Регистрация</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

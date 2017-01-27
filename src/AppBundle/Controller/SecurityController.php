@@ -15,7 +15,6 @@ use AppBundle\Form\User\RecoveryPasswordType;
 use AppBundle\Form\User\ResetPasswordType;
 use AppBundle\Form\User\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,10 +22,13 @@ use Symfony\Component\HttpFoundation\Response;
 class SecurityController extends Controller
 {
     /**
+     * @param Request $request
      * @Route("/", name="index")
+     * @return Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $this->get('translator')->setLocale('ru');
         return $this->render('auth/index.html.twig');
     }
 
