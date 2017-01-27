@@ -1,21 +1,27 @@
 {% extends "base.html.twig" %}
 
+{% block title %}
+    {{ 'welcome.title'| trans }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
 
         <div class="col-md-3"></div>
         <div class="col-md-6" style="margin-top: 170px;">
-            <h1 style="text-align: center;">Welcome to Catalog</h1>
+            <h1 style="text-align: center;">{% trans %} welcome.text {% endtrans %}</h1>
             <div class="row">
                 <div class="col-md-12">
                     <a href="{{ path('login') }}" class="btn btn-success btn-lg btn-block" style="margin-bottom: 10px">
-                        Log in
+                        {{ 'login'| trans }}
                     </a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ path('register') }}" class="btn btn-default btn-lg btn-block"> Register </a>
+                    <a href="{{ path('register') }}" class="btn btn-default btn-lg btn-block">
+                        {{ 'register'| trans }}
+                    </a>
                 </div>
             </div>
         </div>

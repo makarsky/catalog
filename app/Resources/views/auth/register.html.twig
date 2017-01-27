@@ -1,11 +1,15 @@
 {% extends "base.html.twig" %}
 
+{% block title %}
+    {{ 'registration'| trans }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2" style="margin-top: 140px;">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Register</div>
+                    <div class="panel-heading">{{ 'registration'| trans }}</div>
                     <div class="panel-body">
                         {{ form_start(form) }}
                         <div class="form_group">
@@ -31,7 +35,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4" style="margin-top:5px;margin-left: 16.666%;">
                                 <button type="submit" class="btn btn-primary" >
-                                    <i class="fa fa-btn fa-user" style="text-align: center">Register</i>
+                                    <i class="fa fa-btn fa-user" style="text-align: center">{{ 'register'| trans }}</i>
                                 </button>
                             </div>
                         </div>
