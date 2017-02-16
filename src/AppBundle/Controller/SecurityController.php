@@ -92,7 +92,7 @@ class SecurityController extends Controller
             $em->persist($confirmEmail);
             $em->flush();
 
-            $this->addFlash('notice', 'Activation instructions were sent to your email!');
+            $this->addFlash('notice', 'instruction.account_activation');
             return $this->redirectToRoute('login');
         }
         return $this->render('auth/register.html.twig', [

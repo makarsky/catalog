@@ -38,6 +38,14 @@
                 <source>registration</source>
                 <target>Регистрация</target>
             </trans-unit>
+            <trans-unit id="10">
+                <source>entrance</source>
+                <target>Вход</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>instruction.account_activation</source>
+                <target>Инструкция для активации была отправлена на вашу почту!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

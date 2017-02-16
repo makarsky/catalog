@@ -38,6 +38,14 @@
                 <source>registration</source>
                 <target>Registration</target>
             </trans-unit>
+            <trans-unit id="10">
+                <source>entrance</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>instruction.account_activation</source>
+                <target>Activation instruction was sent to your email!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
