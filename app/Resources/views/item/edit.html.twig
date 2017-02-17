@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ 'edit_item'| trans }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
-        <h1>Item edit</h1>
+        <h1>{{ 'edit_item' | trans }}</h1>
 
         {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -11,11 +15,11 @@
 
         <ul>
             <li>
-                <a href="{{ path('item_index') }}">Back to the list</a>
+                <a href="{{ path('item_index') }}">{{ 'back_to_list' | trans }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="{{ 'delete' | trans }}">
                 {{ form_end(delete_form) }}
             </li>
         </ul>

@@ -94,6 +94,10 @@
                 <source>edit_item</source>
                 <target>Edit item</target>
             </trans-unit>
+            <trans-unit id="24">
+                <source>delete</source>
+                <target>Delete</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

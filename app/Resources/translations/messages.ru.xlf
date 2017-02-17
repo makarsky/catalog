@@ -94,6 +94,10 @@
                 <source>edit_item</source>
                 <target>Редактирование товара</target>
             </trans-unit>
+            <trans-unit id="24">
+                <source>delete</source>
+                <target>Удалить</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
