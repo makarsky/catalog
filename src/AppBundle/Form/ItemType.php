@@ -19,28 +19,39 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'item.name',
+            ])
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'empty_data' => null,
+                'label' => 'item.description',
             ])
-            ->add('isActive', CheckboxType::class)
-            ->add('sku', TextType::class)
+            ->add('isActive', CheckboxType::class, [
+                'label' => 'item.is_active',
+            ])
+            ->add('sku', TextType::class, [
+                'label' => 'item.sku',
+            ])
             ->add('image', FileType::class, [
                 'attr' => [
                     'data-allowed-file-extensions' => '["jpg", "png"]',
                 ],
                 'required' => false,
                 'empty_data' => null,
+                'label' => 'item.image',
             ])
             ->add('itemId1', IntegerType::class, [
                 'required' => false,
+                'label' => 'item.item_id1',
             ])
             ->add('itemId2', IntegerType::class, [
                 'required' => false,
+                'label' => 'item.item_id2',
             ])
             ->add('itemId3', IntegerType::class, [
                 'required' => false,
+                'label' => 'item.item_id3',
             ])
             ->add('category');
     }
