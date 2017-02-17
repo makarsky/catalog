@@ -46,6 +46,46 @@
                 <source>instruction.account_activation</source>
                 <target>Инструкция для активации была отправлена на вашу почту!</target>
             </trans-unit>
+            <trans-unit id="12">
+                <source>item.name</source>
+                <target>Название</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>item.description</source>
+                <target>Описание</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>item.is_active</source>
+                <target>Активен</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>item.sku</source>
+                <target>SKU</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>item.image</source>
+                <target>Изображение</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>item.item_id1</source>
+                <target>Linked item 1</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>item.item_id2</source>
+                <target>Linked item 2</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>item.item_id3</source>
+                <target>Linked item 3</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>item.category</source>
+                <target>Категория</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>save</source>
+                <target>Сохранить</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
