@@ -86,6 +86,14 @@
                 <source>save</source>
                 <target>Сохранить</target>
             </trans-unit>
+            <trans-unit id="22">
+                <source>back_to_list</source>
+                <target>Назад к списку</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>edit_item</source>
+                <target>Редактирование товара</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

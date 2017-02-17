@@ -86,6 +86,14 @@
                 <source>save</source>
                 <target>Save</target>
             </trans-unit>
+            <trans-unit id="22">
+                <source>back_to_list</source>
+                <target>Back to the list</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>edit_item</source>
+                <target>Edit item</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
