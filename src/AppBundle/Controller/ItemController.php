@@ -118,7 +118,7 @@ class ItemController extends Controller
     }
 
     /**
-     * Deletes a item entity.
+     * Deletes an item entity.
      *
      * @Route("/{id}", name="item_delete")
      * @Method("DELETE")
