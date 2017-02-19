@@ -1,2 +1,45 @@
 {% extends "base.html.twig" %}
 
+{% block body %}
+    <div class="container">
+        <h1 class="page-header">Categories list</h1>
+
+        <ul>
+            <li>
+                <a href="{{ path('category_new') }}">Create a new category</a>
+            </li>
+        </ul>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                <th{% if pagination.isSorted('a.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'isActive', 'a.isActive') }}</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in pagination %}
+                <tr>
+                    <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                    <td>{{ category.title }}</td>
+                    <td>{% if category.isActive %}Yes{% else %}No{% endif %}</td>
+                    {% if is_granted('ROLE_MODERATOR') %}
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('category_show', { 'id': category.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
