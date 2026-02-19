@@ -13,7 +13,7 @@ class CategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('isActive')->add('parent')        ;
+        $builder->add('title')->add('isActive')->add('parent');
     }
     
     /**
@@ -21,9 +21,9 @@ class CategoryType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Category'
-        ));
+        ]);
     }
 
     /**
